@@ -1,0 +1,23 @@
+package.json
+  a8f1c4212123a222 1-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.4",
+  "base_commit_sha": "e6d35085a0724f997db7507fdd91a8c81c7faf71",
+  "prompts": {
+    "a8f1c4212123a222": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019c8480-f36c-7251-8a65-49e42447569b",
+        "model": "unknown"
+      },
+      "human_author": "matéo! <6matbub@gmail.com>",
+      "messages": [],
+      "total_additions": 13,
+      "total_deletions": 0,
+      "accepted_lines": 13,
+      "overriden_lines": 0
+    }
+  }
+}
