@@ -1,0 +1,31 @@
+package.json
+  5c062587864d4f83 5-16,18-21,26-32
+tsconfig.json
+  5c062587864d4f83 1-20
+pnpm-lock.yaml
+  5c062587864d4f83 1-1033
+index.ts
+  5c062587864d4f83 68-69,73
+tsconfig.build.json
+  5c062587864d4f83 1-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.4",
+  "base_commit_sha": "11a917c28cd1a17e3ade0e6538c09a9764baaeb6",
+  "prompts": {
+    "5c062587864d4f83": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019c84a2-45ae-7580-b532-f50a4498687a",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "matéo! <6matbub@gmail.com>",
+      "messages": [],
+      "total_additions": 1099,
+      "total_deletions": 11,
+      "accepted_lines": 1092,
+      "overriden_lines": 0
+    }
+  }
+}
