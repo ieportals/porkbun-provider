@@ -2,6 +2,22 @@
 
 A tiny TypeScript helper for creating and deleting Porkbun CNAME records.
 
+## Environment variables
+
+An example env file is included at `.env.example`.
+
+Runtime keys:
+
+- `PORKBUN_BASE_URL`
+- `PORKBUN_API_KEY`
+- `PORKBUN_SECRET_KEY`
+- `PORKBUN_BASE_DOMAIN`
+
+Optional test keys:
+
+- `PORKBUN_TEST_BASE_DOMAIN`
+- `PORKBUN_TEST_CNAME_CONTENT` (test-only CNAME target, for example `test-target.example.com`)
+
 ## Usage
 
 ```ts
@@ -12,7 +28,7 @@ const dns = createPorkbunClient({
     process.env.PORKBUN_BASE_URL || "https://api.porkbun.com/api/json/v3",
   apiKey: process.env.PORKBUN_API_KEY || "",
   secretKey: process.env.PORKBUN_SECRET_KEY || "",
-  baseDomain: "example.com",
+  baseDomain: process.env.PORKBUN_BASE_DOMAIN || "example.com",
   defaultTtl: "600",
   defaultNotes: "Created by my deployment pipeline",
 });
@@ -60,3 +76,23 @@ Each method returns:
   error?: string;
 }
 ```
+
+## Testing
+
+Run tests:
+
+```bash
+pnpm test
+```
+
+Vitest loads `.env` and `.env.local` automatically for tests.
+
+Integration tests are env-gated. They are skipped unless:
+
+- `PORKBUN_API_KEY` is set
+- `PORKBUN_SECRET_KEY` is set
+- `PORKBUN_TEST_BASE_DOMAIN` is set
+
+Important: in Porkbun, the `PORKBUN_TEST_BASE_DOMAIN` must have **API access enabled** in domain settings.
+
+If set, tests will create and then delete a real CNAME record under the test domain.

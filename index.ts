@@ -65,10 +65,12 @@ export function createPorkbunClient(config: PorkbunConfig) {
         ttl: defaultTtl,
         notes: defaultNotes,
       });
+      const id =
+        typeof responseData.id === "string" ? responseData.id : undefined;
 
       return {
         success: true,
-        id: typeof responseData.id === "string" ? responseData.id : undefined,
+        ...(id ? { id } : {}),
       };
     } catch (error) {
       return {
