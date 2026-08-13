@@ -1,0 +1,29 @@
+.changeset/README.md
+  s_e133dbd55111cd::t_0951d759eacca1 1-8
+package.json
+  s_e133dbd55111cd::t_922e430bf1c3a2 21-27
+  s_e133dbd55111cd::t_5061adae033a76 2-4
+  s_e133dbd55111cd::t_18739cf7a2aaf8 34
+.changeset/config.json
+  s_e133dbd55111cd::t_0eea86a7e799ca 1-11
+CHANGELOG.md
+  s_e133dbd55111cd::t_dc26dc590ce421 1-7
+pnpm-lock.yaml
+  s_e133dbd55111cd::t_532a6bc0cdb69c 11-13,25,29-97,257-272,460-463,504-512,527-536,540-545,560-562,577-580,590-598,602-604,624-627,730-734,737-852,933-949,1046,1052,1084-1085,1141-1150,1158-1163,1166-1172,1183-1184,1193-1194,1232-1235,1238-1239,1254-1255,1271,1277,1292,1303,1305,1309,1327-1328,1350-1351
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "e5ed12f50b57eb659bc96c9192fd78e8edf3176b",
+  "prompts": {},
+  "sessions": {
+    "s_e133dbd55111cd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f0e06c7e-2d1b-43e2-b3c7-fe22f1d4ba1d",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "matéo! <6matbub@gmail.com>"
+    }
+  }
+}
