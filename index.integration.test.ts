@@ -35,4 +35,31 @@ describeIntegration("porkbun live integration", () => {
     expect(createResult.success).toBe(true);
     expect(deleteResult.success).toBe(true);
   }, 30000);
+
+  it("creates and deletes a real TXT record", async () => {
+    const client = createPorkbunClient({
+      baseUrl,
+      apiKey: apiKey ?? "",
+      secretKey: secretKey ?? "",
+      baseDomain: baseDomain ?? "",
+      defaultNotes: "Created by porkbun-provider vitest integration",
+    });
+
+    const name = `vitest-txt-${Date.now()}`;
+    const createResult = await client.createTxtRecord(
+      name,
+      `porkbun-provider-test=${Date.now()}`,
+    );
+    if (!createResult.success) {
+      throw new Error(`Create failed: ${createResult.error ?? "Unknown error"}`);
+    }
+
+    const deleteResult = await client.deleteTxtRecord(name);
+    if (!deleteResult.success) {
+      throw new Error(`Delete failed: ${deleteResult.error ?? "Unknown error"}`);
+    }
+
+    expect(createResult.success).toBe(true);
+    expect(deleteResult.success).toBe(true);
+  }, 30000);
 });
