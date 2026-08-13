@@ -53,14 +53,15 @@ export function createPorkbunClient(config: PorkbunConfig) {
     return responseData;
   }
 
-  async function createCnameRecord(
-    subdomain: string,
+  async function createRecord(
+    type: "CNAME" | "TXT",
+    name: string,
     content: string
   ): Promise<DnsRecordResult> {
     try {
       const responseData = await request(`/dns/create/${baseDomain}`, {
-        name: subdomain,
-        type: "CNAME",
+        name,
+        type,
         content,
         ttl: defaultTtl,
         notes: defaultNotes,
@@ -80,10 +81,17 @@ export function createPorkbunClient(config: PorkbunConfig) {
     }
   }
 
-  async function deleteCnameRecord(subdomain: string): Promise<DnsRecordResult> {
+  // Porkbun's deleteByNameType removes ALL records of `type` at `name`. TXT
+  // names routinely hold several values (for example many `_vercel` ownership
+  // challenges live under a single `_vercel` name), so a TXT delete is a bulk
+  // delete of that name - same semantics as the CNAME delete.
+  async function deleteRecordByNameType(
+    type: "CNAME" | "TXT",
+    name: string
+  ): Promise<DnsRecordResult> {
     try {
       await request(
-        `/dns/deleteByNameType/${baseDomain}/CNAME/${encodeURIComponent(subdomain)}`,
+        `/dns/deleteByNameType/${baseDomain}/${type}/${encodeURIComponent(name)}`,
         {}
       );
 
@@ -96,8 +104,32 @@ export function createPorkbunClient(config: PorkbunConfig) {
     }
   }
 
+  function createCnameRecord(
+    subdomain: string,
+    content: string
+  ): Promise<DnsRecordResult> {
+    return createRecord("CNAME", subdomain, content);
+  }
+
+  function deleteCnameRecord(subdomain: string): Promise<DnsRecordResult> {
+    return deleteRecordByNameType("CNAME", subdomain);
+  }
+
+  function createTxtRecord(
+    name: string,
+    content: string
+  ): Promise<DnsRecordResult> {
+    return createRecord("TXT", name, content);
+  }
+
+  function deleteTxtRecord(name: string): Promise<DnsRecordResult> {
+    return deleteRecordByNameType("TXT", name);
+  }
+
   return {
     createCnameRecord,
     deleteCnameRecord,
+    createTxtRecord,
+    deleteTxtRecord,
   };
 }

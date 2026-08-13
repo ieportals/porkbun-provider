@@ -1,6 +1,6 @@
 # porkbun-provider
 
-A tiny TypeScript helper for creating and deleting Porkbun CNAME records.
+A tiny TypeScript helper for creating and deleting Porkbun CNAME and TXT records.
 
 ## Environment variables
 
@@ -47,6 +47,18 @@ const deleteResult = await dns.deleteCnameRecord("staging");
 if (!deleteResult.success) {
   console.error("Delete failed:", deleteResult.error);
 }
+
+// TXT records - e.g. a domain-ownership verification challenge
+const txtResult = await dns.createTxtRecord(
+  "_vercel",
+  "vc-domain-verify=example.com,abc123",
+);
+
+if (!txtResult.success) {
+  console.error("TXT create failed:", txtResult.error);
+}
+
+await dns.deleteTxtRecord("_vercel");
 ```
 
 ## API
@@ -57,6 +69,8 @@ Creates a client with shared config and returns methods:
 
 - `createCnameRecord(subdomain: string, content: string)`
 - `deleteCnameRecord(subdomain: string)`
+- `createTxtRecord(name: string, content: string)`
+- `deleteTxtRecord(name: string)` - removes **all** TXT records at `name` (Porkbun deletes by name+type)
 
 Config fields:
 
