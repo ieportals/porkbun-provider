@@ -1,0 +1,27 @@
+index.ts
+  s_e133dbd55111cd::t_05987b1594c10c 56-58,63-64,84-91,94,107-128,132-133
+index.test.ts
+  s_e133dbd55111cd::t_5ad6f9db462c2a 71-163
+index.integration.test.ts
+  s_e133dbd55111cd::t_9217e7659802a0 38-64
+README.md
+  s_e133dbd55111cd::t_e093bfa3d7e29a 3
+  s_e133dbd55111cd::t_d6257ef5f80b11 72-73
+  s_e133dbd55111cd::t_0f2dd9885e6a41 50-61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "842e139e5897995e575d28c4e9121947d0879b84",
+  "prompts": {},
+  "sessions": {
+    "s_e133dbd55111cd": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f0e06c7e-2d1b-43e2-b3c7-fe22f1d4ba1d",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "matéo! <6matbub@gmail.com>"
+    }
+  }
+}
